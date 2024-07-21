@@ -259,7 +259,7 @@ async def youtube_dl_call_back(bot, update):
                     chat_id=update.message.chat.id,
                     audio=download_directory,
                     caption=description,
-                    parse_mode="HTML",
+                    parse_mode="html",
                     duration=duration,
                     # performer=response_json["uploader"],
                     # title=response_json["title"],
@@ -279,7 +279,7 @@ async def youtube_dl_call_back(bot, update):
                     document=download_directory,
                     thumb=thumb_image_path,
                     caption=description,
-                    parse_mode="HTML",
+                    parse_mode="html",
                     # reply_markup=reply_markup,
                     reply_to_message_id=update.message.reply_to_message.id,
                     progress=progress_for_pyrogram,
@@ -309,7 +309,7 @@ async def youtube_dl_call_back(bot, update):
                     chat_id=update.message.chat.id,
                     video=download_directory,
                     caption=description,
-                    parse_mode="HTML",
+                    parse_mode="html",
                     duration=duration,
                     width=width,
                     height=height,
@@ -342,7 +342,7 @@ async def youtube_dl_call_back(bot, update):
                                 pyrogram.InputMediaPhoto(
                                     media=image,
                                     caption=caption,
-                                    parse_mode="HTML"
+                                    parse_mode="html"
                                 )
                             )
                         else:
