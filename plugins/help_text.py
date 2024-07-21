@@ -44,7 +44,7 @@ async def get_me_info(client, message):
     await client.send_message(
         chat_id=message.chat.id,
         text=Translation.CURENT_PLAN_DETAILS.format(chat_id, plan_type, expires_at),
-        parse_mode="html",
+        parse_mode="HTML",
         disable_web_page_preview=True,
         reply_to_message_id=message.id  # Corrected attribute
     )
@@ -66,7 +66,7 @@ async def upgrade(client, message):
     await client.send_message(
         chat_id=message.chat.id,
         text=Translation.UPGRADE_TEXT,
-        parse_mode="html",
+        parse_mode="HTML",
         reply_to_message_id=message.id,  # Corrected attribute
         disable_web_page_preview=True
     )

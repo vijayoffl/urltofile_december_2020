@@ -342,7 +342,7 @@ async def youtube_dl_call_back(bot, update):
                                 pyrogram.InputMediaPhoto(
                                     media=image,
                                     caption=caption,
-                                    parse_mode="html"
+                                    parse_mode="HTML"
                                 )
                             )
                         else:
