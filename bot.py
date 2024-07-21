@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.DEBUG,
 logger = logging.getLogger(__name__)
 
 # the secret configuration specific things
-if bool(os.environ.get("WEBHOOK", True)):
+if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
     from config import Config
