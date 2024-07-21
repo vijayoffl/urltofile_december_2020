@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K
 
-# the logging things
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -10,31 +9,25 @@ logger = logging.getLogger(__name__)
 
 import asyncio
 import json
-import math
 import os
-import time
 
-# the secret configuration specific things
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.errors import UserNotParticipant
+
+from helper_funcs.display_progress import humanbytes
+from helper_funcs.help_uploadbot import DownLoadFile
+from translation import Translation
+from PIL import Image
+
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
     from config import Config
 
-# the Strings used for this "thing"
-from translation import Translation
-
-from PIL import Image
-
-import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.display_progress import humanbytes
-from helper_funcs.help_uploadbot import DownLoadFile
-
-from pyrogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram.errors import UserNotParticipant, UserBannedInChannel
-
-@pyrogram.Client.on_message(pyrogram.filters.regex(pattern=".*http.*"))
+@Client.on_message(filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await update.reply_text("You are B A N N E D 🤣🤣🤣🤣")
@@ -146,7 +139,7 @@ async def echo(bot, update):
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.NO_VOID_FORMAT_FOUND.format(str(error_message)),
-            reply_to_message_id=update.message_id,
+            reply_to_message_id=update.id,  # Corrected attribute
             parse_mode="html",
             disable_web_page_preview=True
         )
@@ -267,7 +260,7 @@ async def echo(bot, update):
             Config.CHUNK_SIZE,
             None,
             Translation.DOWNLOAD_START,
-            update.message_id,
+            update.id,  # Corrected attribute
             update.chat.id
         )
         logger.info(f"Thumbnail22:{thumb_image_path}")
@@ -282,7 +275,7 @@ async def echo(bot, update):
             text=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
             reply_markup=reply_markup,
             parse_mode="html",
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.id  # Corrected attribute
         )
     else:
         inline_keyboard = []
@@ -306,5 +299,5 @@ async def echo(bot, update):
             text=Translation.FORMAT_SELECTION.format(""),
             reply_markup=reply_markup,
             parse_mode="html",
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.id  # Corrected attribute
         )

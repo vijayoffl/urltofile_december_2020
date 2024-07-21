@@ -26,7 +26,7 @@ async def start(client, message):
     await client.send_message(
         chat_id=message.chat.id,
         text="Hello! I am a bot. How can I assist you?",
-        reply_to_message_id=message.message_id
+        reply_to_message_id=message.id
     )
     logger.debug("Sent start message to user: %s", message.from_user.id)
 
@@ -38,7 +38,7 @@ async def help_user(client, message):
         text="Here is some help text",
         parse_mode="html",
         disable_web_page_preview=True,
-        reply_to_message_id=message.message_id
+        reply_to_message_id=message.id
     )
     logger.debug("Sent help/about message")
 
@@ -51,7 +51,7 @@ async def get_me_info(client, message):
         text=f"Your chat ID is {chat_id}",
         parse_mode="html",
         disable_web_page_preview=True,
-        reply_to_message_id=message.message_id
+        reply_to_message_id=message.id
     )
     logger.debug("Sent me info message")
 
@@ -62,7 +62,7 @@ async def upgrade(client, message):
         chat_id=message.chat.id,
         text="Upgrade instructions",
         parse_mode="html",
-        reply_to_message_id=message.message_id,
+        reply_to_message_id=message.id,
         disable_web_page_preview=True
     )
     logger.debug("Sent upgrade message")

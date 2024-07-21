@@ -42,7 +42,7 @@ async def button(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await bot.delete_messages(
             chat_id=update.message.chat.id,
-            message_ids=update.message.message_id,
+            message_ids=update.message.id,
             revoke=True
         )
         return
@@ -55,7 +55,7 @@ async def button(bot, update):
         if not os.path.isdir(extract_dir_path):
             await bot.delete_messages(
                 chat_id=update.message.chat.id,
-                message_ids=update.message.message_id,
+                message_ids=update.message.id,
                 revoke=True
             )
             return False
@@ -69,7 +69,7 @@ async def button(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.CANCEL_STR,
-                message_id=update.message.message_id
+                message_id=update.message.id
             )
         elif index_extractor == "ALL":
             i = 0
@@ -82,7 +82,7 @@ async def button(bot, update):
                     # thumb=thumb_image_path,
                     caption=file_content,
                     # reply_markup=reply_markup,
-                    reply_to_message_id=update.message.message_id,
+                    reply_to_message_id=update.message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -99,7 +99,7 @@ async def button(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.ZIP_UPLOADED_STR.format(i, "0"),
-                message_id=update.message.message_id
+                message_id=update.message.id
             )
         else:
             file_content = zip_file_contents[int(index_extractor)]
@@ -111,7 +111,7 @@ async def button(bot, update):
                 # thumb=thumb_image_path,
                 caption=file_content,
                 # reply_markup=reply_markup,
-                reply_to_message_id=update.message.message_id,
+                reply_to_message_id=update.message.id,
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
@@ -126,7 +126,7 @@ async def button(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.ZIP_UPLOADED_STR.format("1", "0"),
-                message_id=update.message.message_id
+                message_id=update.message.id
             )
     elif "|" in cb_data:
         await youtube_dl_call_back(bot, update)
