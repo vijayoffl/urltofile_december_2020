@@ -41,7 +41,7 @@ async def start_bot():
     try:
         await app.start()
         logger.info("Bot started successfully")
-        await app.idle()
+        await pyrogram.idle()  # Correct usage of idle() from pyrogram package
     except FloodWait as e:
         logger.warning(f"FloodWait: Waiting for {e.x} seconds before restarting")
         await asyncio.sleep(e.x)
