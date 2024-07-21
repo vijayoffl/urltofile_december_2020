@@ -30,7 +30,7 @@ async def help_user(client, message):
     await client.send_message(
         chat_id=message.chat.id,
         text=Translation.HELP_USER,
-        parse_mode="html",
+        parse_mode="HTML",
         disable_web_page_preview=True,
         reply_to_message_id=message.id  # Corrected attribute
     )
