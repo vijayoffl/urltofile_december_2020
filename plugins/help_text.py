@@ -5,6 +5,7 @@
 import logging
 import os
 import pyrogram
+from pyrogram.enums import ParseMode
 from translation import Translation
 
 logging.basicConfig(level=logging.DEBUG,
